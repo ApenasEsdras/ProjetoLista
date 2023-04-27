@@ -2,19 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:listinha/src/shared/stores/app_store.dart';
+import 'package:rx_notifier/rx_notifier.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // variavel que escuta as modificacoes da pagina appStore
-    final appStore = context.watch<AppStore>(
-      // ouve e autera algo
-      (store) => store.syncDate,
-    );
-// retorno
-    final syncDate = appStore.syncDate.value;
+    // faz apenas a leitura das modificacoes da pagina appStore
+    final appStore = context.read<AppStore>();
+    // retorno
+    final syncDate = context.select(() => appStore.syncDate);
 
     // coloar texto automatico na data
     var syncDateText = 'Nunca';

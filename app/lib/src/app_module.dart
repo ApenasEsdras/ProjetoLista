@@ -13,7 +13,7 @@ class AppModule extends Module {
   List<Bind> get binds => [
         Bind.instance<Realm>(Realm(config)),
         // só vai funconar se o cliente pegar o item pela classe abstrata
-        AutoBind.factory<ConfigurationService>(ConfigurationServiceImpl.new),
+        AutoBind.singleton<ConfigurationService>(ConfigurationServiceImpl.new),
         AutoBind.singleton(AppStore.new),
       ];
 
