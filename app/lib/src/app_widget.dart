@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:listinha/src/configuration/services/configuration_service.dart';
+import 'package:listinha/src/shared/stores/app_store.dart';
 import 'package:rx_notifier/rx_notifier.dart';
 
-import 'shared/stores/app_store.dart';
 import 'shared/themes/themes.dart';
 
 class AppWidget extends StatefulWidget {

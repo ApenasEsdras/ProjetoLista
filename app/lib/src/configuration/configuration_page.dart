@@ -23,6 +23,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
   @override
   Widget build(BuildContext context) {
     context.select(() => appStore.themeMode);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('LISTINHA'),

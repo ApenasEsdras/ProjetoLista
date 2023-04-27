@@ -9,16 +9,16 @@ void main() {
     'Nova lista de tarefas 1',
   );
 
-  testWidgets('deu bom', (tester) async {
+  test('getProgress', () {
     final tasks = [
-      Task(Uuid.v1(), '', complete: true),
-      Task(Uuid.v1(), '', complete: true),
-      Task(Uuid.v1(), ''),
-      Task(Uuid.v1(), ''),
+      Task(Uuid.v4(), '', complete: true),
+      Task(Uuid.v4(), '', complete: true),
+      Task(Uuid.v4(), ''),
+      Task(Uuid.v4(), ''),
     ];
-    final progress = TaskCard(
-      board: board,
-    ).getProgress(tasks);
+
+    final progress = TaskCard(board: board).getProgress(tasks);
+
     expect(progress, 0.5);
   });
 }

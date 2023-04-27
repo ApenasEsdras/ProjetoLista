@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+
 import '../../shared/services/realm/models/task_model.dart';
 
-// crindo um enum com propriedade
-// criando estados par aa origresso do card
 enum TaskCardStatus {
   pending(Icons.access_time, 'Pendente'),
-  completed(Icons.check, 'Completo'),
-  disabled(Icons.cancel_outlined, 'Desativado');
+  completed(Icons.check, 'Completa'),
+  disabled(Icons.cancel_outlined, 'Desativada');
 
   final IconData icon;
   final String text;
-  // contrutior do enum
+
   const TaskCardStatus(this.icon, this.text);
 }
 
@@ -21,7 +20,6 @@ class TaskCard extends StatelessWidget {
   const TaskCard({super.key, required this.board, this.height = 130});
 
   double getProgress(List<Task> tasks) {
-    // evita de o conteudo vir nulo
     if (tasks.isEmpty) return 0;
     final completes = tasks.where((task) => task.complete).length;
     return completes / tasks.length;
@@ -32,7 +30,6 @@ class TaskCard extends StatelessWidget {
     return '$completes/${tasks.length}';
   }
 
-  // retona os estados para o cone
   TaskCardStatus getStatus(TaskBoard board, double progress) {
     if (!board.enable) {
       return TaskCardStatus.disabled;
@@ -43,7 +40,6 @@ class TaskCard extends StatelessWidget {
     }
   }
 
-  // bacground
   Color getBackgroundColor(TaskCardStatus status, ThemeData theme) {
     switch (status) {
       case TaskCardStatus.pending:
@@ -55,7 +51,6 @@ class TaskCard extends StatelessWidget {
     }
   }
 
-  // line bacground
   Color getColor(TaskCardStatus status, ThemeData theme) {
     switch (status) {
       case TaskCardStatus.pending:
@@ -88,7 +83,6 @@ class TaskCard extends StatelessWidget {
         color: backgroundColor,
         borderRadius: BorderRadius.circular(25),
       ),
-      // alinhando elementso dentro do card
       padding: const EdgeInsets.symmetric(
         vertical: 12,
         horizontal: 20,
@@ -100,16 +94,13 @@ class TaskCard extends StatelessWidget {
             children: [
               Icon(
                 iconData,
-                // alterar a cor do icone de acordo com a base de alteracao
                 color: theme.iconTheme.color?.withOpacity(0.5),
               ),
               const Spacer(),
               Text(
-                // texto de Pendente
                 statusText,
                 style: theme.textTheme.bodySmall?.copyWith(
                   fontWeight: FontWeight.bold,
-                  // sobrecrever tema
                   color: theme.textTheme.bodySmall?.color?.withOpacity(0.5),
                 ),
               ),
@@ -128,18 +119,15 @@ class TaskCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // valores de 0 ate 1
                 LinearProgressIndicator(
                   value: progress,
                   color: color,
                 ),
                 const SizedBox(height: 2),
-                // numero de partes
                 Text(
                   progressText,
                   style: theme.textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.bold,
-                    // sobrecrever tema
                     color: theme.textTheme.bodySmall?.color?.withOpacity(0.5),
                   ),
                 ),

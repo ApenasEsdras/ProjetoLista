@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:listinha/src/home/widgets/task_card.dart';
 import 'package:listinha/src/shared/services/realm/models/task_model.dart';
 import 'package:realm/realm.dart';
 
 import '../shared/widgets/user_image_button.dart';
 import 'widgets/custom_drawer.dart';
+import 'widgets/task_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -30,8 +30,6 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Stack(
           children: [
-            //
-            // lista de item
             ListView.separated(
               padding: const EdgeInsets.only(
                 top: 50,
@@ -39,32 +37,27 @@ class _HomePageState extends State<HomePage> {
                 right: 30,
                 bottom: 200,
               ),
-              // setando tamanho maximo da lista
               itemCount: 100,
               itemBuilder: (_, index) {
                 final board = TaskBoard(
                   Uuid.v4(),
                   'Nova lista de tarefas 1',
-                  // testr q gera 50% de progress
                   tasks: [
-                    Task(Uuid.v1(), '', complete: true),
-                    Task(Uuid.v1(), '', complete: true),
-                    Task(Uuid.v1(), '', complete: true),
-                    Task(Uuid.v1(), '', complete: true),
-                    Task(Uuid.v1(), '', complete: true),
+                    Task(Uuid.v4(), '', complete: true),
+                    Task(Uuid.v4(), '', complete: true),
+                    Task(Uuid.v4(), '', complete: true),
+                    Task(Uuid.v4(), '', complete: true),
                   ],
                 );
                 return TaskCard(
                   board: board,
+                  height: 140,
                 );
               },
               separatorBuilder: (context, index) {
-                return const SizedBox(
-                  height: 10,
-                );
+                return const SizedBox(height: 10);
               },
             ),
-            //
             Align(
               alignment: Alignment.topCenter,
               child: Padding(

@@ -9,18 +9,14 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // faz apenas a leitura das modificacoes da pagina appStore
     final appStore = context.read<AppStore>();
-    // retorno
+
     final syncDate = context.select(() => appStore.syncDate);
 
-    // coloar texto automatico na data
     var syncDateText = 'Nunca';
-    // para isso funcionar precisamos do pacote ( flutter pub add intl)
+
     if (syncDate != null) {
-      // contruindo modelo de formatacao = hora e data
-      final format = DateFormat('dd/MM/yyy ás hh:mm');
-      // inserindo
+      final format = DateFormat('dd/MM/yyyy às hh:mm');
       syncDateText = format.format(syncDate);
     }
 
@@ -41,8 +37,6 @@ class CustomDrawer extends StatelessWidget {
         ),
         NavigationDrawerDestination(
           icon: const Icon(Icons.sync),
-          // essa bix está aq pq o rom não seta width e isso buga,
-          //dai temso q addc um width.
           label: SizedBox(
             width: 210,
             child: Row(
@@ -50,7 +44,6 @@ class CustomDrawer extends StatelessWidget {
                 const Text('Sincronizar'),
                 const Spacer(),
                 Text(
-                  // chamada da data
                   syncDateText,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),

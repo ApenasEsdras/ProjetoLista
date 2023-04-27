@@ -14,7 +14,7 @@ mixin _AppStoreMixin on _AppStore {
   ///
 
   late final _themeModeRx = RxNotifier<ThemeMode>(super.themeMode);
-  RxValueListenable<ThemeMode> get themeModeListenable => _themeModeRx;
+  ValueListenable<ThemeMode> get themeModeListenable => _themeModeRx;
 
   @override
   set themeMode(ThemeMode _themeModeValue) =>
@@ -27,7 +27,7 @@ mixin _AppStoreMixin on _AppStore {
   ///
 
   late final _syncDateRx = RxNotifier<DateTime?>(super.syncDate);
-  RxValueListenable<DateTime?> get syncDateListenable => _syncDateRx;
+  ValueListenable<DateTime?> get syncDateListenable => _syncDateRx;
 
   @override
   set syncDate(DateTime? _syncDateValue) => _syncDateRx.value = _syncDateValue;
